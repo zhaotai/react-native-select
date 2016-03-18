@@ -41,7 +41,7 @@ export default class Select extends Component {
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Picker
-          selectedValue={this.state.selectedKey}
+          selectedValue={this.state.selectedKey ? this.state.selectedKey : ""}
           onValueChange={this._onChange.bind(this)}
           style={{backgroundColor: '#fff'}}
         >
@@ -67,7 +67,7 @@ export default class Select extends Component {
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Text onPress={this._setModalVisible.bind(this, true)}>
-          {models[this.state.selectedKey].label}
+          {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
         </Text>
         <Modal
           animated={true}
