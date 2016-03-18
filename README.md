@@ -12,7 +12,11 @@ In android, the picker just shows as the android`s default.
 
 ## How to use
 
-`npm install react-native-default-select`, and import it to your code `import Select from 'react-native-default-select'`.
+	npm install react-native-default-select
+	
+and import it to your code 
+	
+	import Select from 'react-native-default-select'	
 And then you can use it.
 
 ## Props
@@ -47,7 +51,7 @@ var models = {
 
 ## Example
 
-``` jsx
+``` js
 var CAR_MAKES_AND_MODELS = {
   amc: {
     label: 'AMC',
@@ -69,10 +73,6 @@ class AwesomeProject extends Component {
     this.state = {
       carMake: 'Chevrolet'
     };
-  }
-
-  _setModalVisible(visible) {
-    this.setState({modalVisible: visible});
   }
 
   render() {
