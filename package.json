@@ -1,5 +1,5 @@
 {
-  "name": "react-native-select",
+  "name": "react-native-default-select",
   "version": "1.0.0",
   "description": "a react native select component showed as select in safari in ios and showed as android way in android",
   "main": "index.js",
