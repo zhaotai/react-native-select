@@ -1,0 +1,16 @@
+{
+  "name": "react-native-select",
+  "version": "1.0.0",
+  "description": "a react native select component showed as select in safari in ios and showed as android way in android",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "select"
+  ],
+  "author": "zhaotai",
+  "license": "ISC"
+}
