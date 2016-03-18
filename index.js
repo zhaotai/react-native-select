@@ -37,13 +37,13 @@ export default class Select extends Component {
   }
 
   _renderAndroid() {
-    const { models, selectedKey, onChange, style, ...other } = this.props;
+    const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Picker
           selectedValue={this.state.selectedKey ? this.state.selectedKey : ""}
           onValueChange={this._onChange.bind(this)}
-          style={{backgroundColor: '#fff'}}
+          style={[styles.androidPicker, labelStyle]}
         >
           {Object.keys(models).map((key) => (
             <Picker.Item
@@ -59,14 +59,14 @@ export default class Select extends Component {
   }
 
   _renderIOS() {
-    const { models, selectedKey, onChange, style, ...other } = this.props;
+    const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
     var modalBackgroundStyle = {
       backgroundColor: 'transparent',
     };
     var innerContainerTransparentStyle = null;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
-        <Text onPress={this._setModalVisible.bind(this, true)}>
+        <Text style={labelStyle} onPress={this._setModalVisible.bind(this, true)}>
           {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
         </Text>
         <Modal
@@ -111,6 +111,8 @@ export default class Select extends Component {
 Select.propTypes = {
   models: React.PropTypes.object,
   selectedKey: React.PropTypes.string,
+  style: React.PropTypes.object,
+  labelStyle: React.PropTypes.object,
   onChange: React.PropTypes.func
 };
 
@@ -138,5 +140,8 @@ var styles = StyleSheet.create({
   pickerIOS: {
     marginTop: 0,
     width: Dimensions.get('window').width,
+  },
+  androidPicker: {
+    backgroundColor: '#fff'
   }
 });
