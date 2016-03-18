@@ -6,11 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhaotai/react-native-select.git"
+  },
   "keywords": [
     "react",
     "native",
     "select"
   ],
-  "author": "zhaotai",
-  "license": "ISC"
+  "author": {
+    "name": "zhaotai",
+    "email": "zhaotai5541@gmail.com"
+  },
+  "license": "MIT"
 }
