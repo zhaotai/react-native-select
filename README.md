@@ -8,15 +8,15 @@ In IOS, the picker will show from the bottom of the screen, and cover all other 
 
 In android, the picker just shows as the android`s default.
 
-**If you have some suggestions to you. I`m glad to recieve your message.**
+**If you have some suggestions to me. I`m glad to receive your message.**
 
 ## How to use
 
 	npm install react-native-default-select
-	
-and import it to your code 
-	
-	import Select from 'react-native-default-select'	
+
+and import it to your code
+
+	import Select from 'react-native-default-select'
 And then you can use it.
 
 ## Props
@@ -43,11 +43,24 @@ var models = {
 
 * **selectedKey:** Optional
 
-> **selectedKey** is the one of the key in models representing the default option.If you don`t use this prop, the default option is nothing.
+> **selectedKey** is the one of the key in models representing the default option.If you don\`t use this prop, the default option is nothing.
 
 * **onChange:<Function>** Required
 
 > **onChange(key)** is a callback function with parameter 'key'. It will expose the selected key of the option to you so that you can do more things.
+
+* **style:** Optional
+
+> **style** will be passed to View as its style, you can customize style of the View
+
+* **labelStyle:** Optional
+
+> **labelStyle** will be passed to the control label of the input, you can customize the font, color etc..
+
+* *others:* Optional
+
+> You can also pass other props included in View, it will be automatically append the View props.
+	For example: accessibilityLabel, accessible
 
 ## Example
 
@@ -71,7 +84,7 @@ class AwesomeProject extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      carMake: 'Chevrolet'
+      carMake: 'alfa'
     };
   }
 
@@ -80,7 +93,7 @@ class AwesomeProject extends Component {
       <View style={{height: 600, paddingTop: 20}}>
         <ScrollView>
           <Select models={CAR_MAKES_AND_MODELS}
-                  selectedKey={'chevrolet'}
+                  selectedKey={'alfa'}
                   onChange={(key) => this.setState({carMake: key})}
           />
           <View><Text>12345678</Text></View>
@@ -93,3 +106,7 @@ class AwesomeProject extends Component {
 }
 
 ```
+
+## change log
+
+v1.0.5 fixed the React.creatElement warnings and updated the README.md about props.

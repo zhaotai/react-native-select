@@ -7,12 +7,12 @@ import React, {
   Dimensions,
   TouchableHighlight,
   PickerIOS,
-  PickerItemIOS,
   TouchableWithoutFeedback,
   Platform,
   Picker,
   View
 } from 'react-native';
+const PickerItemIOS = PickerIOS.Item;
 
 export default class Select extends Component {
   constructor(props) {
