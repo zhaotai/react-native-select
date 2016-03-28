@@ -38,12 +38,25 @@ export default class Select extends Component {
 
   _renderAndroid() {
     const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
+    let textHeight = 20;
+    if(style && style.height) {
+      textHeight = style.height;
+    } else if(labelStyle && labelStyle.height) {
+      textHeight = labelStyle.height;
+    } else if(labelStyle && labelStyle.fontSize) {
+      textHeight = labelStyle.fontSize;
+    } else {
+
+    }
     return (
       <View style={[styles.selectContainer, style]} {...other}>
+        <Text style={labelStyle} >
+          {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
+        </Text>
         <Picker
           selectedValue={this.state.selectedKey ? this.state.selectedKey : ""}
           onValueChange={this._onChange.bind(this)}
-          style={[styles.androidPicker, labelStyle]}
+          style={[styles.androidPicker, {height: textHeight}]}
         >
           {Object.keys(models).map((key) => (
             <Picker.Item
@@ -66,7 +79,7 @@ export default class Select extends Component {
     var innerContainerTransparentStyle = null;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
-        <Text style={labelStyle} onPress={this._setModalVisible.bind(this, true)}>
+        <Text style={labelStyle}>
           {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
         </Text>
         <Modal
@@ -118,7 +131,9 @@ Select.propTypes = {
 
 var styles = StyleSheet.create({
   selectContainer: {
-    flex: 1
+    flex: 1,
+    alignItems: 'flex-end',
+    padding: 0
   },
   container: {
     flex: 1,
@@ -141,7 +156,15 @@ var styles = StyleSheet.create({
     marginTop: 0,
     width: Dimensions.get('window').width,
   },
+  androidLabel: {
+    alignSelf: 'center',
+    justifyContent: 'center'
+  },
   androidPicker: {
-    backgroundColor: '#fff'
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0
   }
 });
