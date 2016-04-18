@@ -79,7 +79,7 @@ export default class Select extends Component {
     var innerContainerTransparentStyle = null;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
-        <Text style={labelStyle} onPress={this._setModalVisible.bind(this, false)}>
+        <Text style={labelStyle} onPress={this._setModalVisible.bind(this, true)}>
           {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
         </Text>
         <Modal
