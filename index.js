@@ -1,6 +1,6 @@
 'use strict';
-import React, {
-  Component,
+import React from 'react';
+import {
   StyleSheet,
   Modal,
   Text,
@@ -14,7 +14,7 @@ import React, {
 } from 'react-native';
 const PickerItemIOS = PickerIOS.Item;
 
-export default class Select extends Component {
+export default class Select extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
