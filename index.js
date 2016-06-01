@@ -83,7 +83,7 @@ export default class Select extends React.Component {
           {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
         </Text>
         <Modal
-          animated={true}
+          animationType="slide"
           transparent={true}
           visible={this.state.modalVisible}
         >
