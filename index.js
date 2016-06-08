@@ -6,13 +6,11 @@ import {
   Text,
   Dimensions,
   TouchableHighlight,
-  PickerIOS,
   TouchableWithoutFeedback,
   Platform,
   Picker,
   View
 } from 'react-native';
-const PickerItemIOS = PickerIOS.Item;
 
 export default class Select extends React.Component {
   constructor(props) {
@@ -38,16 +36,7 @@ export default class Select extends React.Component {
 
   _renderAndroid() {
     const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
-    let textHeight = 20;
-    if(style && style.height) {
-      textHeight = style.height;
-    } else if(labelStyle && labelStyle.height) {
-      textHeight = labelStyle.height;
-    } else if(labelStyle && labelStyle.fontSize) {
-      textHeight = labelStyle.fontSize;
-    } else {
 
-    }
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Text style={labelStyle} >
@@ -56,7 +45,7 @@ export default class Select extends React.Component {
         <Picker
           selectedValue={this.state.selectedKey ? this.state.selectedKey : ""}
           onValueChange={this._onChange.bind(this)}
-          style={[styles.androidPicker, {height: textHeight}]}
+          style={[styles.androidPicker]}
         >
           {Object.keys(models).map((key) => (
             <Picker.Item
@@ -95,18 +84,18 @@ export default class Select extends React.Component {
               <View onStartShouldSetResponder={ (evt) => true }
                     onResponderReject={ (evt) => {} }
                     style={[styles.innerContainer, innerContainerTransparentStyle]}>
-                    <PickerIOS selectedValue={this.state.selectedKey}
+                    <Picker selectedValue={this.state.selectedKey}
                                onValueChange={this._onChange.bind(this)}
                                style={styles.pickerIOS}
                     >
                       {Object.keys(models).map((key) => (
-                        <PickerItemIOS
+                        <Picker.Item
                           key={key}
                           value={key}
                           label={models[key].label}
                         />
                       ))}
-                    </PickerIOS>
+                    </Picker>
               </View>
             </View>
           </TouchableWithoutFeedback>
