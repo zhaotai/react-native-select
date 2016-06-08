@@ -21,6 +21,12 @@ export default class Select extends React.Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      selectedKey: props.selectedKey
+    });
+  }
+
   _setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }

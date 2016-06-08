@@ -107,7 +107,3 @@ class AwesomeProject extends Component {
 
 ```
 
-## change log
-
-v1.0.6 hack the bug that the text style of Picker in Android such as 'height', 'textAlign', 'fontSize' and so on cannot be changed. As the result, select default style for android has been changed by deafult.
-v1.0.5 fixed the React.creatElement warnings and updated the README.md about props.
