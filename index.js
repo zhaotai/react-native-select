@@ -67,7 +67,7 @@ export default class Select extends React.Component {
   }
 
   _renderIOS() {
-    const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
+    const { models, selectedKey, onChange, style, labelStyle, doneLabel, ...other } = this.props;
     var modalBackgroundStyle = {
       backgroundColor: 'transparent',
     };
@@ -85,7 +85,7 @@ export default class Select extends React.Component {
           <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, false)}>
             <View style={[styles.container, modalBackgroundStyle]}>
               <View style={styles.pickerBar}>
-                <Text onPress={this._close.bind(this)}>完成</Text>
+                <Text onPress={this._close.bind(this)}>{doneLabel || "完成"}</Text>
               </View>
               <View onStartShouldSetResponder={ (evt) => true }
                     onResponderReject={ (evt) => {} }
