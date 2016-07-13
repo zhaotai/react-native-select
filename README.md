@@ -21,10 +21,10 @@ And then you can use it.
 
 ## Props
 
-* **models:** Required
+* **options:** Required
 
 ``` javascript
-var models = {
+var options = {
 	key1: {
 		label: 'label1',
 		xx: {},
@@ -39,11 +39,11 @@ var models = {
 
 ```
 
-> models is the structrue to pass to the PickerIOS and Picker. So the structure is kind of similar to PickerIOS. You need to pass an object with sorts of keys to identify the options. And in each of the key object, one field is nessarrary, it is 'label'. The 'label' is the word of the option you want to show and the others are content of this option.
+> options is the structrue to pass to the PickerIOS and Picker. So the structure is kind of similar to PickerIOS. You need to pass an object with sorts of keys to identify the options. And in each of the key object, one field is nessarrary, it is 'label'. The 'label' is the word of the option you want to show and the others are content of this option.
 
 * **selectedKey:** Optional
 
-> **selectedKey** is the one of the key in models representing the default option.If you don\`t use this prop, the default option is nothing.
+> **selectedKey** is the one of the key in options representing the default option.If you don\`t use this prop, the default option is nothing.
 
 * **onChange:<Function>** Required
 
@@ -106,4 +106,3 @@ class AwesomeProject extends Component {
 }
 
 ```
-
