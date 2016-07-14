@@ -119,8 +119,7 @@ export default class Select extends React.Component {
 Select.propTypes = {
   models: React.PropTypes.object,
   selectedKey: React.PropTypes.string,
-  style: React.PropTypes.object,
-  labelStyle: React.PropTypes.object,
+  labelStyle: Text.propTypes.style,
   onChange: React.PropTypes.func
 };
 
