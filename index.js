@@ -41,23 +41,23 @@ export default class Select extends React.Component {
   }
 
   _renderAndroid() {
-    const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
+    const { options=this.props.models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
 
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Text style={labelStyle} >
-          {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
+          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : ""}
         </Text>
         <Picker
           selectedValue={this.state.selectedKey ? this.state.selectedKey : ""}
           onValueChange={this._onChange.bind(this)}
           style={[styles.androidPicker]}
         >
-          {Object.keys(models).map((key) => (
+          {Object.keys(options).map((key) => (
             <Picker.Item
               key={key}
               value={key}
-              label={models[key].label}
+              label={options[key].label}
             />
           ))}
         </Picker>
@@ -67,7 +67,7 @@ export default class Select extends React.Component {
   }
 
   _renderIOS() {
-    const { models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
+    const { options=this.props.models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
     var modalBackgroundStyle = {
       backgroundColor: 'transparent',
     };
@@ -75,7 +75,7 @@ export default class Select extends React.Component {
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Text style={labelStyle} onPress={this._setModalVisible.bind(this, true)}>
-          {models[this.state.selectedKey] ? models[this.state.selectedKey].label : ""}
+          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : ""}
         </Text>
         <Modal
           animationType="slide"
@@ -94,11 +94,11 @@ export default class Select extends React.Component {
                                onValueChange={this._onChange.bind(this)}
                                style={styles.pickerIOS}
                     >
-                      {Object.keys(models).map((key) => (
+                      {Object.keys(options).map((key) => (
                         <Picker.Item
                           key={key}
                           value={key}
-                          label={models[key].label}
+                          label={options[key].label}
                         />
                       ))}
                     </Picker>
@@ -117,7 +117,7 @@ export default class Select extends React.Component {
 }
 
 Select.propTypes = {
-  models: React.PropTypes.object,
+  options: React.PropTypes.object,
   selectedKey: React.PropTypes.string,
   labelStyle: Text.propTypes.style,
   onChange: React.PropTypes.func
