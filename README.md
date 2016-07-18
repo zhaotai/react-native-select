@@ -53,9 +53,9 @@ var options = {
 
 > **style** will be passed to View as its style, you can customize style of the View
 
-> **doneLabel** Optional 
+* **doneLabel** Optional 
 
-* **doneLabel** will replace the default Chinese label '完成'.
+> **doneLabel** will replace the default Chinese label '完成'.
 
 * **labelStyle:** Optional
 
