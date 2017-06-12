@@ -44,6 +44,14 @@ class SelectExample extends Component {
         </Button>
         <Select models={CAR_MAKES_AND_MODELS}
                 selectedKey={'alfa'}
+                placeholder={'Car Makes and Models'}
+                onChange={(key) => this.setState({carMake: key})}
+        />
+        <Button containerStyle={{width: 200, justifyContent: 'center', alignItems: 'center', height: 50, backgroundColor: '#ccc'}} onPress={this._testYourCode.bind(this)}>
+          <Text>Example with placeholder</Text>
+        </Button>
+        <Select models={CAR_MAKES_AND_MODELS}
+                placeholder={'Car Makes and Models'}
                 onChange={(key) => this.setState({carMake: key})}
         />
       </View>

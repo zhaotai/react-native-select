@@ -41,15 +41,15 @@ export default class Select extends React.Component {
   }
 
   _renderAndroid() {
-    const { options=this.props.models, selectedKey, onChange, style, labelStyle, ...other } = this.props;
+    const { options=this.props.models, selectedKey, onChange, style, labelStyle, placeholder, ...other } = this.props;
 
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Text style={labelStyle} >
-          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : ""}
+          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : placeholder}
         </Text>
         <Picker
-          selectedValue={this.state.selectedKey ? this.state.selectedKey : ""}
+          selectedValue={this.state.selectedKey ? this.state.selectedKey : placeholder}
           onValueChange={this._onChange.bind(this)}
           style={[styles.androidPicker]}
         >
@@ -67,7 +67,7 @@ export default class Select extends React.Component {
   }
 
   _renderIOS() {
-    const { options=this.props.models, selectedKey, onChange, style, labelStyle, doneLabel, doneLabelColor, ...other } = this.props;
+    const { options=this.props.models, selectedKey, onChange, style, labelStyle, doneLabel, doneLabelColor, placeholder, ...other } = this.props;
     var modalBackgroundStyle = {
       backgroundColor: 'transparent',
     };
@@ -75,7 +75,7 @@ export default class Select extends React.Component {
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         <Text style={labelStyle} onPress={this._setModalVisible.bind(this, true)}>
-          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : ""}
+          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : placeholder}
         </Text>
         <Modal
           animationType="slide"
@@ -124,7 +124,12 @@ Select.propTypes = {
   options: React.PropTypes.object,
   selectedKey: React.PropTypes.string,
   labelStyle: Text.propTypes.style,
-  onChange: React.PropTypes.func
+  onChange: React.PropTypes.func,
+  placeholder: React.PropTypes.string,
+};
+
+Select.defaultProps = {
+    placeholder: "",
 };
 
 var styles = StyleSheet.create({
