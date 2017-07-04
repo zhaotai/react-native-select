@@ -52,7 +52,7 @@ export default class Select extends React.Component {
   }
 
   _renderAndroid() {
-    const {models: options, style, placeholder, ...other} = this.props;
+    const {models: options, style, placeholder, onChange, ...other} = this.props;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         {this._renderLabel()}
@@ -75,7 +75,7 @@ export default class Select extends React.Component {
   }
 
   _renderIOS() {
-    const { models: options, style, doneLabel, doneLabelColor, ...other } = this.props;
+    const { models: options, style, doneLabel, doneLabelColor, onChange, ...other } = this.props;
     var modalBackgroundStyle = {
       backgroundColor: 'transparent',
     };
