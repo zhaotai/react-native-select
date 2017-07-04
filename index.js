@@ -134,8 +134,8 @@ Select.propTypes = {
   selectedKey: React.PropTypes.string,
   labelStyle: Text.propTypes.style,
   onChange: React.PropTypes.func,
-  onShow: React.PropTypes.func,
-  onHide: React.PropTypes.func,
+  onShow: React.PropTypes.func,// IOS only
+  onHide: React.PropTypes.func,// IOS only
   placeholder: React.PropTypes.string,
   placeholderKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   placeholderStyle: Text.propTypes.style,
