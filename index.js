@@ -52,12 +52,12 @@ export default class Select extends React.Component {
   }
 
   _renderAndroid() {
-    const {models: options, style, placeholder, onChange, ...other} = this.props;
+    const {models: options, style, placeholder, placeholderKey, onChange, ...other} = this.props;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
         {this._renderLabel()}
         <Picker
-          selectedValue={this.state.selectedKey ? this.state.selectedKey : placeholder}
+          selectedValue={this.state.selectedKey ? this.state.selectedKey : placeholderKey}
           onValueChange={this._onChange.bind(this)}
           style={[styles.androidPicker]}
         >
