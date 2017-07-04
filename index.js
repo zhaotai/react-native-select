@@ -29,6 +29,8 @@ export default class Select extends React.Component {
 
   _setModalVisible(visible) {
     this.setState({modalVisible: visible});
+    visible && this.props.onShow && this.props.onShow();
+    !visible && this.props.onHide && this.props.onHide();
   }
 
   _onChange(key) {
@@ -38,18 +40,27 @@ export default class Select extends React.Component {
 
   _close() {
     this.setState({modalVisible: false});
+    this.props.onHide && this.props.onHide();
+  }
+
+  _renderLabel() {
+    const {models: options, labelStyle, placeholderStyle, placeholderKey, placeholder} = this.props;
+    const onPress = Platform.OS === 'ios' ? this._setModalVisible.bind(this, true) : undefined;
+
+    if(options[this.state.selectedKey] === undefined || this.state.selectedKey === placeholderKey){
+      return <Text style={[styles.placeholderStyle, placeholderStyle]} onPress={onPress}>{placeholder}</Text>
+    }
+
+    return <Text style={labelStyle} onPress={onPress}>{options[this.state.selectedKey].label}</Text>
   }
 
   _renderAndroid() {
-    const { options=this.props.models, selectedKey, onChange, style, labelStyle, placeholder, ...other } = this.props;
-
+    const {models: options, style, placeholder, placeholderKey, onChange, ...other} = this.props;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
-        <Text style={labelStyle} >
-          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : placeholder}
-        </Text>
+        {this._renderLabel()}
         <Picker
-          selectedValue={this.state.selectedKey ? this.state.selectedKey : placeholder}
+          selectedValue={this.state.selectedKey ? this.state.selectedKey : placeholderKey}
           onValueChange={this._onChange.bind(this)}
           style={[styles.androidPicker]}
         >
@@ -67,16 +78,14 @@ export default class Select extends React.Component {
   }
 
   _renderIOS() {
-    const { options=this.props.models, selectedKey, onChange, style, labelStyle, doneLabel, doneLabelColor, placeholder, ...other } = this.props;
+    const { models: options, style, doneLabel, doneLabelColor, onChange, ...other } = this.props;
     var modalBackgroundStyle = {
       backgroundColor: 'transparent',
     };
     var innerContainerTransparentStyle = null;
     return (
       <View style={[styles.selectContainer, style]} {...other}>
-        <Text style={labelStyle} onPress={this._setModalVisible.bind(this, true)}>
-          {options[this.state.selectedKey] ? options[this.state.selectedKey].label : placeholder}
-        </Text>
+        {this._renderLabel()}
         <Modal
           animationType="slide"
           transparent={true}
@@ -92,20 +101,20 @@ export default class Select extends React.Component {
                 </Text>
               </View>
               <View onStartShouldSetResponder={ (evt) => true }
-                    onResponderReject={ (evt) => {} }
-                    style={[styles.innerContainer, innerContainerTransparentStyle]}>
-                    <Picker selectedValue={this.state.selectedKey}
-                               onValueChange={this._onChange.bind(this)}
-                               style={styles.pickerIOS}
-                    >
-                      {Object.keys(options).map((key) => (
-                        <Picker.Item
-                          key={key}
-                          value={key}
-                          label={options[key].label}
-                        />
-                      ))}
-                    </Picker>
+                  onResponderReject={ (evt) => {} }
+                  style={[styles.innerContainer, innerContainerTransparentStyle]}>
+                <Picker selectedValue={this.state.selectedKey}
+                    onValueChange={this._onChange.bind(this)}
+                    style={styles.pickerIOS}
+                >
+                  {Object.keys(options).map((key) => (
+                    <Picker.Item
+                      key={key}
+                      value={key}
+                      label={options[key].label}
+                    />
+                  ))}
+                </Picker>
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -125,11 +134,15 @@ Select.propTypes = {
   selectedKey: React.PropTypes.string,
   labelStyle: Text.propTypes.style,
   onChange: React.PropTypes.func,
+  onShow: React.PropTypes.func,// IOS only
+  onHide: React.PropTypes.func,// IOS only
   placeholder: React.PropTypes.string,
+  placeholderKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  placeholderStyle: Text.propTypes.style,
 };
 
 Select.defaultProps = {
-    placeholder: "",
+  placeholder: "",
 };
 
 var styles = StyleSheet.create({
