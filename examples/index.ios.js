@@ -1,15 +1,14 @@
 'use strict';
-import React, {
+import React, {Component} from 'react';
+import {
   AppRegistry,
-  Component,
   StyleSheet,
   Text,
   Alert,
-  Image,
   View
 } from 'react-native';
 import Button from 'react-native-button';
-import Select from './components/select';
+import Select from '../index';
 
 class SelectExample extends Component {
   constructor(props) {
@@ -24,6 +23,7 @@ class SelectExample extends Component {
 
   render() {
     const CAR_MAKES_AND_MODELS = {
+      '': {label: 'Car Makes and Models'},
       amc: {
         label: 'AMC',
         models: ['AMX', 'Concord', 'Eagle', 'Gremlin', 'Matador', 'Pacer'],
@@ -43,16 +43,20 @@ class SelectExample extends Component {
           <Text>点击这里来测试你的code</Text>
         </Button>
         <Select models={CAR_MAKES_AND_MODELS}
-                selectedKey={'alfa'}
-                placeholder={'Car Makes and Models'}
-                onChange={(key) => this.setState({carMake: key})}
+            selectedKey={'alfa'}
+            placeholder={'Car Makes and Models'}
+            placeholderStyle={{color: '#CCC'}}
+            placeholderKey={''}
+            onChange={ () => {} }
         />
         <Button containerStyle={{width: 200, justifyContent: 'center', alignItems: 'center', height: 50, backgroundColor: '#ccc'}} onPress={this._testYourCode.bind(this)}>
           <Text>Example with placeholder</Text>
         </Button>
         <Select models={CAR_MAKES_AND_MODELS}
-                placeholder={'Car Makes and Models'}
-                onChange={(key) => this.setState({carMake: key})}
+            placeholder={'Car Makes and Models'}
+            placeholderStyle={{color: '#CCC'}}
+            placeholderKey={''}
+            onChange={ () => {} }
         />
       </View>
     )
